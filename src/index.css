@@ -1,0 +1,6 @@
+@font-face {
+  font-family: Brico;
+  src: url(../src/assets/fonts/static/BricolageGrotesque-Regular.ttf);
+}
+
+@import "tailwindcss";
