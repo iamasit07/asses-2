@@ -79,7 +79,7 @@ const InputArea: React.FC = () => {
       window.removeEventListener("dragleave", handleDragLeave);
       window.removeEventListener("drop", handleDrop);
     };
-  }, []);
+  }, [handleDrop]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -109,7 +109,7 @@ const InputArea: React.FC = () => {
     if (textareaEl) {
       textareaEl.addEventListener("paste", handlePaste);
     }
-  }, []);
+  }, [handlePaste]);
 
   useEffect(() => {
     if (textareaRef.current) {
