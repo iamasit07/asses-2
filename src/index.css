@@ -1,6 +1,14 @@
-@font-face {
-  font-family: Brico;
-  src: url(../src/assets/fonts/static/BricolageGrotesque-Regular.ttf);
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-Bricolage: "Bricolage Grotesque", sans-serif;
+  --font-Inter: "Inter", sans-serif;
 }
 
-@import "tailwindcss";
+@layer base {
+  body {
+    @apply bg-white text-gray-900;
+    font-family: var(--font-Bricolage);
+  }
+}

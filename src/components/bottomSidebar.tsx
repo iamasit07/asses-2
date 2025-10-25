@@ -8,9 +8,15 @@ interface BottomSidebarProps {
 const BottomSidebar: React.FC<BottomSidebarProps> = ({ isCollapsed }) => {
   return (
     <>
-      <div className="px-4 py-2">
-        <div className="flex justify-between bg-linear-to-r from-pink-100 to-blue-100 rounded-md p-4 mb-4">
-          <div className="">
+      <div className="px-4 py-4 border-t border-gray-200">
+        <div
+          className={`flex justify-center md:justify-between bg-linear-to-r from-pink-100 to-blue-100 rounded-md mb-4 ${
+            isCollapsed
+              ? "flex-col items-center p-1"
+              : "flex-row items-center p-4"
+          }`}
+        >
+          <div className="p-1">
             <div
               className={`flex items-center justify-between ${
                 isCollapsed ? "" : "mb-1"

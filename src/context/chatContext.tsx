@@ -10,5 +10,5 @@ export const useChat = (): ChatContextType => {
   if (!context) {
     throw new Error("useChat must be used within a ChatProvider");
   }
-  return context;
+  return { ...context };
 };
