@@ -43,7 +43,11 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
 
     const newChat = {
       id: newChatId,
-      title: text.substring(0, 40) + "...",
+      title: `${
+        text.substring(0, 40).length > 40
+          ? text.substring(0, 40)
+          : files[0]?.name || "New Chat"
+      }...`,
       messages: [userMessage, llmResponse],
     };
 

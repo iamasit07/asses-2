@@ -36,13 +36,13 @@ const ChatHistory = () => {
           // --- Suggestions View ---
           <>
             <div className="flex flex-col w-full items-center justify-center mt-20 space-y-12">
-              <div className="flex flex-col w-full max-w-4xl space-y-12">
+              <div className="flex flex-col w-2xs md:w-full space-y-12">
                 <div className="flex flex-col h-full">
                   <div className="flex flex-col w-full h-full">
                     <div className="text-3xl font-extrabold text-gray-900 mb-4">
                       <span>👋🏼Hi Laurence!</span>
                     </div>
-                    <div className="text-5xl font-slim text-gray-900 min-w-64 w-lg">
+                    <div className="text-5xl font-slim text-gray-900 w-auto md:min-w-64 md:w-lg">
                       <span>What do you want to learn today?</span>
                     </div>
                   </div>

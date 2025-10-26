@@ -1,7 +1,13 @@
 import AttachmentIcon from "@mui/icons-material/Attachment";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import SendIcon from "@mui/icons-material/Send";
-import { useEffect, useRef, useState, type ChangeEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ChangeEvent,
+} from "react";
 import { useChat } from "../context/chatContext";
 import AttachmentPopup from "./fileAttachmentPopup";
 import { useNavigate, useParams } from "react-router-dom";
@@ -23,34 +29,47 @@ const InputArea: React.FC = () => {
   const cameraInputRef = useRef<HTMLInputElement | null>(null);
   const rootRef = useRef<HTMLDivElement | null>(null);
 
-  const addFiles = (newFiles: FileList | null) => {
+  const addFiles = useCallback((newFiles: FileList | null) => {
     if (!newFiles || newFiles.length === 0) return;
     const filesArray = Array.from(newFiles);
     setFiles((prevFiles) => [...prevFiles, ...filesArray]);
-    setIsPopupOpen(true);
-  };
+  }, []);
 
-  const handleDragOver = (e: DragEvent) => {
+  const handleDragOver = useCallback((e: DragEvent) => {
     e.preventDefault();
     setIsDragging(true);
-  };
+  }, []);
 
-  const handleDragLeave = (e: DragEvent) => {
+  const handleDragLeave = useCallback((e: DragEvent) => {
     e.preventDefault();
     setIsDragging(false);
-  };
+  }, []);
 
-  const handleDrop = (e: DragEvent) => {
-    e.preventDefault();
-    setIsDragging(false);
-    addFiles(e.dataTransfer ? e.dataTransfer.files : null);
-  };
+  const handleDrop = useCallback(
+    (e: DragEvent) => {
+      e.preventDefault();
+      setIsDragging(false);
+      const newFiles = e.dataTransfer ? e.dataTransfer.files : null;
+      if (newFiles && newFiles.length > 0) {
+        addFiles(newFiles);
+        setIsPopupOpen(true);
+      }
+    },
+    [addFiles]
+  );
 
-  const handlePaste = (e: ClipboardEvent) => {
-    if (e.target !== textareaRef.current) {
-      addFiles(e.clipboardData ? e.clipboardData.files : null);
-    }
-  };
+  const handlePaste = useCallback(
+    (e: ClipboardEvent) => {
+      if (e.target !== textareaRef.current) {
+        const newFile = e.clipboardData ? e.clipboardData.files : null;
+        if (newFile && newFile.length > 0) {
+          addFiles(newFile);
+          setIsPopupOpen(true);
+        }
+      }
+    },
+    [addFiles]
+  );
 
   const handleDeleteOne = (indexToDelete: number) => {
     setFiles((prevFiles) =>
@@ -68,18 +87,8 @@ const InputArea: React.FC = () => {
   const onFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     addFiles(e.target.files);
     e.target.value = "";
+    setIsPopupOpen(false);
   };
-
-  useEffect(() => {
-    window.addEventListener("dragover", handleDragOver);
-    window.addEventListener("dragleave", handleDragLeave);
-    window.addEventListener("drop", handleDrop);
-    return () => {
-      window.removeEventListener("dragover", handleDragOver);
-      window.removeEventListener("dragleave", handleDragLeave);
-      window.removeEventListener("drop", handleDrop);
-    };
-  }, [handleDrop]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -109,7 +118,18 @@ const InputArea: React.FC = () => {
     if (textareaEl) {
       textareaEl.addEventListener("paste", handlePaste);
     }
-  }, [handlePaste]);
+
+    return () => {
+      if (rootEl) {
+        rootEl.removeEventListener("dragover", handleDragOver);
+        rootEl.removeEventListener("dragleave", handleDragLeave);
+        rootEl.removeEventListener("drop", handleDrop);
+      }
+      if (textareaEl) {
+        textareaEl.removeEventListener("paste", handlePaste);
+      }
+    };
+  }, [handleDragOver, handleDragLeave, handleDrop, handlePaste]);
 
   useEffect(() => {
     if (textareaRef.current) {
