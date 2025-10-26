@@ -6,7 +6,7 @@ import FolderIcon from "@mui/icons-material/Folder";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import PublicIcon from "@mui/icons-material/Public";
 import RecentChats from "./recentChat";
-import { useChat } from "../context/chatContext";
+import { useChatHistory } from "../hooks/useChatHistory";
 import useDebounce from "../hooks/debounce";
 import { useEffect, useRef, useState, type FocusEvent } from "react";
 import { Link } from "react-router-dom";
@@ -34,7 +34,7 @@ const TopSidebar: React.FC<TopSidebarProps> = ({
   isCollapsed,
   setIsCollapsed,
 }) => {
-  const { recentChatData } = useChat();
+  const { recentChatData } = useChatHistory();
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filteredChats, setFilteredChats] = useState<typeof recentChatData>([]);
   const debouncedTerm = useDebounce<string>({ value: searchTerm, delay: 300 });

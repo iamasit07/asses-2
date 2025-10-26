@@ -1,4 +1,4 @@
-import type { Message } from "../types/chatContext.types";
+import type { Message } from "../types/chat.type";
 
 interface Chat {
   id: string;

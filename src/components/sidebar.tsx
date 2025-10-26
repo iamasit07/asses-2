@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useChat } from "../context/chatContext";
+import { useUI } from "../hooks/useUI";
 import TopSidebar from "./topSidebar";
 import BottomSidebar from "./bottomSidebar";
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const { isSidebarOpen, setIsSidebarOpen } = useChat();
+  const { isSidebarOpen, setIsSidebarOpen } = useUI();
 
   return (
     <>

@@ -2,13 +2,13 @@ import ChatArea from "../components/chat-area";
 import Sidebar from "../components/sidebar";
 import React, { useEffect } from "react";
 import data from "../db/chats";
-import { useChat } from "../context/chatContext";
+import { useChatSession } from "../hooks/useChatSession";
 import { useNavigate, useParams } from "react-router-dom";
 
 const NewChat: React.FC = () => {
   const navigate = useNavigate();
   const { chatId } = useParams();
-  const { setMessages, setChatTitle } = useChat();
+  const { setMessages, setChatTitle } = useChatSession();
 
   useEffect(() => {
     if (chatId) {

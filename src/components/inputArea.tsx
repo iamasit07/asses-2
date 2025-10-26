@@ -8,13 +8,13 @@ import {
   useState,
   type ChangeEvent,
 } from "react";
-import { useChat } from "../context/chatContext";
+import { useChatSession } from "../hooks/useChatSession";
 import AttachmentPopup from "./fileAttachmentPopup";
 import { useNavigate, useParams } from "react-router-dom";
 
 const InputArea: React.FC = () => {
   const [textareaValue, setTextareaValue] = useState("");
-  const { typingMessage, sendMessage, startNewChat } = useChat();
+  const { typingMessage, sendMessage, startNewChat } = useChatSession();
   const navigate = useNavigate();
   const { chatId } = useParams();
 

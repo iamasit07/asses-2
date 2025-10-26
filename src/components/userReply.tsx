@@ -1,6 +1,6 @@
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AttachmentDisplay from "./attachmentArea";
-import type { Message } from "../types/chatContext.types";
+import type { Message } from "../types/chat.type";
 
 interface UserReplyProps {
   msg: string;

@@ -1,10 +1,10 @@
-import { useChat } from "../context/chatContext";
 import Header from "./header";
 import ChatHistory from "./chatHistory";
 import InputArea from "./inputArea";
+import { useChatSession } from "../hooks/useChatSession";
 
 const ChatArea = () => {
-  const { chatTitle } = useChat();
+  const { chatTitle } = useChatSession();
 
   return (
     <>

@@ -12,17 +12,13 @@ import {
   DownArrow,
   GeminiLogo,
 } from "../assets/svg/svg";
-import { useChat } from "../context/chatContext";
+import { useUI } from "../hooks/useUI";
+import { useChatSession } from "../hooks/useChatSession";
 import { Link } from "react-router-dom";
 
 const Header = ({ title }: { title: string | null }) => {
-  const {
-    activeLLM,
-    setActiveLLM,
-    setIsSidebarOpen,
-    setMessages,
-    setTypingMessage,
-  } = useChat();
+  const { setIsSidebarOpen } = useUI();
+  const { activeLLM, setActiveLLM, setMessages } = useChatSession();
 
   return (
     <div className="w-full shrink-0 bg-white sticky top-0 z-10">
@@ -102,7 +98,6 @@ const Header = ({ title }: { title: string | null }) => {
             to="/new-chat"
             onClick={() => {
               setMessages([]);
-              setTypingMessage(null);
             }}
             className="ml-2 flex items-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-colors shadow-sm hover:shadow-md"
           >
@@ -115,7 +110,7 @@ const Header = ({ title }: { title: string | null }) => {
       </div>
 
       {/* Bottom Border */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+      <div className="w-full h-px bg-linear-to-r from-transparent via-gray-200 to-transparent"></div>
     </div>
   );
 };

@@ -7,7 +7,7 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import TypewriterMessage from "./typeWriterMessage";
 import { useState } from "react";
 import AttachmentDisplay from "./attachmentArea";
-import type { Message } from "../types/chatContext.types";
+import type { Message } from "../types/chat.type";
 
 interface LLMReplyProps {
   msg: string;

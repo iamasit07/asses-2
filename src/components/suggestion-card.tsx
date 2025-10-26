@@ -1,13 +1,13 @@
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
-import { useChat } from "../context/chatContext";
 import { useState } from "react";
+import { useChatSession } from "../hooks/useChatSession";
 
 interface SuggestionCardProps {
   title: string;
 }
 
 const SuggestionCard: React.FC<SuggestionCardProps> = ({ title }) => {
-  const { startNewChat } = useChat();
+  const { startNewChat } = useChatSession();
   const [onFocus, setOnFocus] = useState(false);
 
   const handleSend = () => {

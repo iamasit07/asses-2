@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
-import { useChat } from "../context/chatContext";
-import type { Message } from "../types/chatContext.types";
+import type { Message } from "../types/chat.type";
 import SuggestionCard from "./suggestion-card";
 import UserReply from "./userReply";
 import LLMReply from "./llmReply";
+import { useChatSession } from "../hooks/useChatSession";
 
 const suggestions = [
   {
@@ -18,7 +18,7 @@ const suggestions = [
 ];
 
 const ChatHistory = () => {
-  const { messages, typingMessage } = useChat();
+  const { messages, typingMessage } = useChatSession();
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
   const handleScrollToBottom = () => {
