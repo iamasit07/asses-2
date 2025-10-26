@@ -6,9 +6,9 @@ function App() {
   return (
     <>
       <Routes>
+        <Route path="/" element={<Navigate to="/new-chat" />} />
         <Route path="/new-chat" element={<NewChat />} />
         <Route path="/chat/:chatId" element={<NewChat />} />
-        <Route path="/" element={<Navigate to="/new-chat" />} />
       </Routes>
     </>
   );

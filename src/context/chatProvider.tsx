@@ -33,34 +33,18 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
       sender: "user",
     };
 
-    // Simulate LLM response
-    const llmResponse: Message = {
-      id: Date.now() + 1,
-      text: `${text.includes("image") ? ans2.text : ans1.text}`,
-      files: files,
-      sender: "llm",
-    };
-
     const newChat = {
       id: newChatId,
-      title: `${
-        text.substring(0, 40).length > 40
-          ? text.substring(0, 40)
-          : files[0]?.name || "New Chat"
-      }...`,
-      messages: [userMessage, llmResponse],
+      title: text ? text.substring(0, 40) : files[0]?.name || "New Chat",
+      messages: [userMessage],
     };
 
-    addChat(newChat); // This will add the new chat to your in-memory db
+    addChat(newChat);
     setMessages(newChat.messages);
     setChatTitle(newChat.title);
     setRecentChatData(data.map(({ id, title }) => ({ id, title })));
 
-    // Simulate typewriter response for typing indicator
-    setTypingMessage(llmResponse);
-    setTimeout(() => {
-      setTypingMessage(null);
-    }, 1000);
+    sendMessage(text, files);
 
     return newChatId;
   };

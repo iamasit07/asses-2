@@ -78,11 +78,33 @@ const ChatHistory = () => {
 
             {typingMessage && (
               <div className="flex w-full justify-end">
-                <div className=" flex flex-col items-start">
+                <div className="flex flex-col items-start w-full max-w-2xl">
                   <div
-                    className={`relative flex flex-col p-4 rounded-lg max-w-2xl shadow-md bg-gray-200 text-gray-700`}
+                    className={`relative flex flex-col w-full p-4 rounded-lg shadow-md bg-gray-200 animate-pulse`}
                   >
-                    <p className="italic">Typing...</p>
+                    {/* Skeleton for "Resources" badge (right-aligned) */}
+                    <div className="absolute top-2 right-2 h-6 w-32 rounded-full bg-gray-300"></div>
+
+                    {/* Skeleton for text content (left-aligned within bubble) */}
+                    <div className="w-full mt-5">
+                      {" "}
+                      {/* Margin-top to clear the badge */}
+                      <div className="h-4 bg-gray-300 rounded w-3/4 mb-2"></div>
+                      <div className="h-4 bg-gray-300 rounded w-full mb-2"></div>
+                      <div className="h-4 bg-gray-300 rounded w-1/4"></div>
+                    </div>
+
+                    {/* Skeleton for AttachmentDisplay area (left-aligned within bubble) */}
+                    <div className="h-24 w-48 bg-gray-300 rounded-lg mt-3"></div>
+
+                    {/* Skeleton for action buttons (left-aligned within bubble) */}
+                    <div>
+                      <div className="flex items-center space-x-2 mt-3 ml-1">
+                        <div className="h-6 w-6 rounded-md bg-gray-300"></div>
+                        <div className="h-6 w-6 rounded-md bg-gray-300"></div>
+                        <div className="h-6 w-6 rounded-md bg-gray-300"></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
