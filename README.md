@@ -39,8 +39,8 @@ You need to have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/
 1.  **Clone the repository:**
 
     ```sh
-    git clone [https://github.com/iamasit07/asses-2.git](https://github.com/iamasit07/asses-2.git)
-    cd Asses-2
+    git clone https://github.com/iamasit07/asses-2.git
+    cd asses-2
     ```
 
 2.  **Install NPM packages:**
