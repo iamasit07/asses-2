@@ -1,10 +1,10 @@
-# Assis-2: AI Chat Interface (Developer Guide)
+# Asses-2: AI Chat Interface (Developer Guide)
 
-This document serves as a comprehensive guide for developers working on the Assis-2 project. It covers the application's functionality, its architecture, component structure, and the technical decisions made during development.
+This document serves as a comprehensive guide for developers working on the Asses-2 project. It covers the application's functionality, its architecture, component structure, and the technical decisions made during development.
 
 ## 1. Project Overview
 
-Assis-2 is a modern, responsive frontend for an AI chat application. Its purpose is to provide a clean user interface for interacting with a large language model (LLM), managing chat history, and handling file attachments.
+Asses-2 is a modern, responsive frontend for an AI chat application. Its purpose is to provide a clean user interface for interacting with a large language model (LLM), managing chat history, and handling file attachments.
 
 We built this as a single-page application using **React**, **TypeScript**, and **Vite**. Styling is handled by **Tailwind CSS** for its utility-first approach, supplemented with **Material-UI Icons**.
 
@@ -40,7 +40,7 @@ To run the project locally, follow these steps:
 
     ```bash
     git clone <repository-url>
-    cd assis-2
+    cd Asses-2
     ```
 
 2.  **Install dependencies:**
