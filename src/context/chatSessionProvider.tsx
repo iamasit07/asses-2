@@ -50,21 +50,33 @@ export const ChatSessionProvider = ({ children }: { children: ReactNode }) => {
       sender: "user",
     };
 
+    const response: Message = {
+      id: Date.now() + 1,
+      text: `${text.includes("image") ? ans2.text : ans1.text}`,
+      sender: "llm",
+      files: files,
+    };
+
     const newChat = {
       id: newChatId,
       title: text ? text.substring(0, 40) : files[0]?.name || "New Chat",
-      messages: [userMessage],
+      messages: [userMessage, response],
     };
 
     addChat(newChat);
-    setMessages(newChat.messages);
+
+    setMessages([userMessage]);
+    setTypingMessage(response);
     setChatTitle(newChat.title);
     setRecentChatData((prevData) => [
       { id: newChat.id, title: newChat.title },
       ...prevData,
     ]);
 
-    sendMessage(text, files);
+    setTimeout(() => {
+      setTypingMessage(null);
+      setMessages((prevMessages) => [...prevMessages, response]);
+    }, 1000);
 
     return newChatId;
   };

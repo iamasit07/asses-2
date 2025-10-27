@@ -16,9 +16,9 @@ const UserReply = ({ msg, messages, index }: UserReplyProps) => {
         className="text-blue-200 mt-1"
       />
       <div
-        className={`p-3 rounded-lg max-w-2xl shadow-md bg-indigo-100 text-gray-900`}
+        className={`p-3 rounded-lg max-w-2xl text-wrap shadow-md bg-indigo-100 text-gray-900`}
       >
-        <p style={{ whiteSpace: "pre-wrap" }}>{msg}</p>
+        <p style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>{msg}</p>
         <AttachmentDisplay files={messages[index].files || []} />
       </div>
     </div>
